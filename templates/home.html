@@ -1,0 +1,71 @@
+<h>
+    <head>
+        <title>Register</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    </head>
+    <body>
+        <div class="container-fluid"></div>
+        <div  class="col-md-offset-1 col-md-4">
+            <form action="adddata" method="POST" autocomplete="off">
+                {% csrf_token %}
+            <h3 class="page=header text-primary text-center">Registration</h3>
+            <div class="form-group">
+                <label>name</label>
+                <input type="text" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+                <label>age</label>
+                <input type="text" class="form-control" name="age">
+            </div>
+            <div class="form-group">
+                <label>address</label>
+                <input type="text" class="form-control" name="address">
+            </div>
+            <div class="form-group">
+                <label>contact</label>
+                <input type="text" class="form-control" name="contact">
+            </div>
+            <div class="form-group">
+                <label>email</label>
+                <input type="text" class="form-control" name="email">
+            </div>
+            <div class="form-group pull-right">
+                <input type="submit" value="register" class="'btn btn-primary">
+                <input type="submit" value="clear" class="'btn btn-danger">
+            </div>
+        </form>
+        </div>
+        <div class="col-md-6">
+            {%if datas %}
+            <h3 class="page-header text-primary text-center">view details</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>age</th>
+                        <th>address</th>
+                        <th>contact</th>
+                        <th>email</th>
+                        <th>update</th>
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                {% for data in datas %}
+                <tbody>
+                    <tr>
+                      
+                        <td>{{data.name}}</td>
+                        <td>{{data.age}}</td>
+                        <td>{{data.address}}</td>
+                        <td>{{data.contact}}</td>
+                        <td>{{data.email}}</td>
+                        <td><a class="btn btn-success" href="updatedata/{{data.id}}">update</a></td>
+                        <td><a class="btn btn-danger" href="deletedata/{{data.id}}">delete</a></td>
+                </tbody>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+    </body>
+</h>
